@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	file, err := os.Open("input/day1.txt")
+	file, err := os.Open("input/day1.txt");
 	exitIfErr(err)
 
 	scanner := bufio.NewScanner(file)
@@ -26,14 +26,14 @@ func main() {
 	exitIfErr(scanner.Err())
 
 	one, two := false, false
-	for _, a := range input {
-		for _, b := range input {
+	for i, a := range input {
+		for j, b := range input[i:] {
 			if !one && a+b == 2020 {
 				fmt.Printf("Part 1: %d\n", a*b)
 				one = true
 			}
 			if !two {
-				for _, c := range input {
+				for _, c := range input[j:] {
 					if a+b+c == 2020 {
 						fmt.Printf("Part 2: %d\n", a*b*c)
 						two = true
