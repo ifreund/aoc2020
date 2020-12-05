@@ -20,37 +20,15 @@ func main() {
 
 	var seat_ids []int
 	for scanner.Scan() {
-		seat := scanner.Text()
-
-		row := 0
-		amount := 128
-		for _, c := range seat[:7] {
-			amount /= 2
-			switch c {
-			case 'B':
-				row += amount
-			case 'F':
-				// do nothing
-			default:
-				log.Fatal("invalid input")
+		var seat_id int
+		for _, c := range scanner.Text() {
+			seat_id <<= 1
+			if c == 'B' || c == 'R' {
+    			seat_id |= 1
+			} else if c != 'F' && c != 'L' {
+    			log.Fatal("invalid input")
 			}
 		}
-
-		col := 0
-		amount = 8
-		for _, c := range seat[7:] {
-			amount /= 2
-			switch c {
-			case 'R':
-				col += amount
-			case 'L':
-				// do nothing
-			default:
-				log.Fatal("invalid input")
-			}
-		}
-
-		seat_id := row*8 + col
 		seat_ids = append(seat_ids, seat_id)
 
 		if seat_id > part1 {
