@@ -11,7 +11,7 @@ import (
 func main() {
 	file, err := os.Open("input/day5.txt")
 	if err != nil {
-    	log.Fatal(err)
+		log.Fatal(err)
 	}
 
 	scanner := bufio.NewScanner(file)
@@ -24,9 +24,9 @@ func main() {
 		for _, c := range scanner.Text() {
 			seat_id <<= 1
 			if c == 'B' || c == 'R' {
-    			seat_id |= 1
+				seat_id |= 1
 			} else if c != 'F' && c != 'L' {
-    			log.Fatal("invalid input")
+				log.Fatal("invalid input")
 			}
 		}
 		seat_ids = append(seat_ids, seat_id)
@@ -35,8 +35,8 @@ func main() {
 			part1 = seat_id
 		}
 	}
-	if err != nil {
-    	log.Fatal(err)
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
 	}
 
 	sort.Slice(seat_ids, func(i, j int) bool { return seat_ids[i] < seat_ids[j] })

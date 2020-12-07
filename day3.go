@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 )
 
@@ -21,7 +22,9 @@ var slopes = [...]slope{
 
 func main() {
 	file, err := os.Open("input/day3.txt")
-	exitIfErr(err)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	scanner := bufio.NewScanner(file)
 
@@ -33,7 +36,9 @@ func main() {
 		}
 		input = append(input, row)
 	}
-	exitIfErr(scanner.Err())
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
 
 	// sigh, pretty sure this is allocating at runtime.
 	// can't I just have a static array ffs?
@@ -57,11 +62,4 @@ func main() {
 
 	fmt.Printf("Part 1: %d\n", out[2])
 	fmt.Printf("Part 2: %d\n", part2)
-}
-
-func exitIfErr(err error) {
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err.Error())
-		os.Exit(1)
-	}
 }

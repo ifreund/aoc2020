@@ -43,7 +43,7 @@ func main() {
 			bags[bag] = append(bags[bag], content{strings.Join(raw[1:3], " "), count})
 		}
 	}
-	if err != nil {
+	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
 
