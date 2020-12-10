@@ -57,8 +57,3 @@ func main() {
 	fmt.Printf("Part 1: %d\n", ones*threes)
 	fmt.Printf("Part 2: %d\n", counts[len(counts)-1])
 }
-
-func swapRemove(s []int, i int) []int {
-	s[len(s)-1], s[i] = s[i], s[len(s)-1]
-	return s[:len(s)-1]
-}
