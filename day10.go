@@ -46,10 +46,10 @@ func main() {
 	counts := make([]uint64, len(adapters))
 	counts[0] = 1
 
-	for i, x := range adapters[1:] {
-		for j, y := range adapters[:i+1] {
+	for i, x := range adapters {
+		for j, y := range adapters[:i] {
 			if x-y == 3 || x-y == 2 || x-y == 1 {
-				counts[i+1] += counts[j]
+				counts[i] += counts[j]
 			}
 		}
 	}
